@@ -1,0 +1,15 @@
+<agm-map [latitude]="lat" [longitude]="lon">
+  <agm-marker *ngFor="let data of meteorit_data;" [latitude]="data.reclat" [longitude]="data.reclong">
+    <agm-info-window>
+      <div class="information-location">
+        <h2>{{data.name}}</h2>
+        <img class="map-image" src="{{getStaticMapImage(data.reclat, data.reclong)}}" alt="data.name">
+      </div>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>
+<div class="jumbotron">
+  <div class="container">
+    <h2>Meteorite Landings</h2>
+  </div>
+</div>
