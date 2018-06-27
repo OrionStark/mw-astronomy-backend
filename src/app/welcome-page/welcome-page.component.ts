@@ -11,10 +11,17 @@ export class WelcomePageComponent implements OnInit {
   constructor(private _router: Router) { }
 
   ngOnInit() {
+    if ( localStorage.getItem('token') ) {
+      this._router.navigate(['dashboard']);
+    }
   }
 
   onRegisterClicked() {
     this._router.navigate(['/register']);
+  }
+
+  onLoginClicked() {
+    this._router.navigate(['/login']);
   }
 
 }

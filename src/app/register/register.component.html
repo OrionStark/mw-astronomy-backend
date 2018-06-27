@@ -1,22 +1,21 @@
-<div class="jumbotron wrapper">
-  <div class="container">
-
-      <div class="wrapper_form">
-          <div class="fadeIn first">
-              <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-          </div>
-          <span class="brand">Astro Social</span>
-          <form>
-                  <input type="text" id="username" class="fadeIn second" name="username" placeholder="Username">
-                  <input type="text" id="name" class="fadeIn second" name="name" placeholder="Nama">
-                  <input type="text" id="email" class="fadeIn second" name="email" placeholder="E-mail">
-                  <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
-                  <input type="submit" class="fadeIn fourth" value="Next">
-          </form>
-          <div id="formFooter">
-              <a routerLink="/login" class="underlineHover" href="#">Login</a> ,
-              <a routerLink="/" class="underlineHover" href="#">Cancel</a>
-          </div>
-      </div>
+<div class="wrapper_form">
+  <div class="fadeIn first">
+      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+  </div>
+  <span class="brand">Astro Social</span>
+  <form [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+          <input type="text" formControlName="username" id="username" class="fadeIn second" name="username" placeholder="Username">
+          <div class="alert" *ngIf="!registerForm.controls['username'].valid && registerForm.controls['username'].touched">Username is required, please check again your input fields</div>
+          <input type="text" formControlName="name" id="name" class="fadeIn second" name="name" placeholder="Nama">
+          <div class="alert" *ngIf="!registerForm.controls['name'].valid && registerForm.controls['name'].touched">Name is required, please check again your input fields</div>
+          <input type="text" formControlName="email" id="email" class="fadeIen second" name="email" placeholder="E-mail">
+          <div class="alert" *ngIf="!registerForm.controls['email'].valid && registerForm.controls['email'].touched">Email is required, please check again your input fields</div>
+          <input type="password" formControlName="password" id="password" class="fadeIn third" name="password" placeholder="Password">
+          <div class="alert" *ngIf="!registerForm.controls['password'].valid && registerForm.controls['password'].touched">Paasword is required, please check again your input fields</div>
+          <input type="submit" [disabled]="!registerForm.valid" class="fadeIn fourth" value="Next">
+  </form>
+  <div id="formFooter">
+      <a routerLink="/login" class="underlineHover" href="#">Login</a> ,
+      <a routerLink="/" class="underlineHover" href="#">Cancel</a>
   </div>
 </div>

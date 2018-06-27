@@ -1,20 +1,17 @@
-<div class="jumbotron wrapper">
-  <div class="container">
-
-      <div class="wrapper_form">
-          <div class="fadeIn first">
-              <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-          </div>
-          <span class="brand">Astro Social</span>
-          <form>
-                  <input type="text" id="username" class="fadeIn second" name="username" placeholder="Username">
-                  <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password">
-                  <input type="submit" class="fadeIn fourth" value="Next">
-          </form>
-          <div id="formFooter">
-              <a routerLink="/register" class="underlineHover" href="#">Register</a> ,
-              <a routerLink="/" class="underlineHover" href="#">Cancel</a>
-          </div>
-      </div>
+<div class="wrapper_form">
+  <div class="fadeIn first">
+      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+  </div>
+  <span class="brand">Astro Social</span>
+  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+    <input formControlName="username" type="text" id="login" class="fadeIn second" name="login" placeholder="Username" />
+    <div class="alert" *ngIf="!loginForm.controls['username'].valid && loginForm.controls['username'].touched">Username is required, please check again your input fields</div>
+    <input formControlName="password" type="password" id="password" class="fadeIn third" name="login" placeholder="Password" />
+    <div class="alert" *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">Password is required, please check again your input fields</div>
+    <input type="submit" [disabled]="!loginForm.valid" class="fadeIn fourth" value="Log In">
+  </form>
+  <div id="formFooter">
+      <a routerLink="/register" class="underlineHover" href="#">Register</a> ,
+      <a routerLink="/" class="underlineHover" href="#">Cancel</a>
   </div>
 </div>

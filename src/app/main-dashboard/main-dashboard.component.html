@@ -1,0 +1,42 @@
+<div class="jumbotron">
+  <div class="d">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="col-md-12 statistics-content">
+          <div class="statistic-card">
+            <h3>Weekly NEO Statistics</h3>
+            <canvas id="weekly_chart">{{chart}}</canvas>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="hazardous-card">
+            <h3>Weekly Hazardous NEO Statistics</h3>
+            <canvas id="weekly_hazardous_chart">{{hazard_chart}}</canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="col-md-12">
+          <div class="sun-altitude-card">
+            <h2>Sun's Altitude (deg)</h2>
+            <h5>Medan</h5>
+            <h2 class="altitude-big" *ngIf="sunsInformation">{{sunsInformation.informations.sun_position.altitude}}</h2>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="full-sun-information" *ngIf="sunsInformation">
+            <h2>Full Sun's Information</h2>
+            <h5>Medan</h5>
+            <h4>Current Julian Day : {{sunsInformation.informations.clientJD}}</h4>
+            <h4>Sunrise : {{sunsInformation.informations.sunrise}}</h4>
+            <h4>Sunset : {{sunsInformation.informations.sunset}}</h4>
+            <h4>Altitude : {{sunsInformation.informations.sun_position.altitude}}</h4>
+            <h4>Azimuth : {{sunsInformation.informations.sun_position.azimuth}}</h4>
+            <h4>Last Solar Transit : {{sunsInformation.informations.solar_transit}}</h4>
+            <h4>Right Ascension (deg) : {{sunsInformation.informations.right_ascension.degrees}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

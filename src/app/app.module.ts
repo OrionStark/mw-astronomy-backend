@@ -2,11 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Routes, RouterModule } from '@angular/router';
 
-import { UserService } from './models/User/user.service';
 import { MeteoriteService } from './services/meteorite.service';
+import { NeoServices } from './services/neo.service';
+import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth-guard.service';
+import { UserServices } from './services/user.service';
+
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { MaterialsComponent } from './app.materials';
@@ -15,25 +21,24 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainComponent } from './main/main.component';
-import { SuninformationComponent } from './suninformation/suninformation.component';
 import { NeoTodayComponent } from './neo-today/neo-today.component';
-import { ProfileComponent } from './profile/profile.component';
-import { GlobalchatComponent } from './globalchat/globalchat.component';
 import { AgmCoreModule } from '@agm/core';
 import { MeteoritmapComponent } from './meteoritmap/meteoritmap.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MainDashboardComponent } from './main-dashboard/main-dashboard.component';
+import { MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { WeeklyneoComponent } from './weeklyneo/weeklyneo.component';
 
 const routes: Routes = [
   { path: '', component: WelcomePageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'dashboard', component: DashboardComponent,
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
     children: [
-      { path: '', component: MainComponent },
-      { path: 'suninformation', component: SuninformationComponent },
+      { path: '', component: MainDashboardComponent },
       { path: 'neo-today', component: NeoTodayComponent },
-      { path: 'profile', component: ProfileComponent },
-      { path: 'globalchat', component: GlobalchatComponent },
-      { path: 'meteorit-lands', component: MeteoritmapComponent }
+      { path: 'meteorit-lands', component: MeteoritmapComponent },
+      { path: 'neo-weekly', component: WeeklyneoComponent }
     ]
   }
 ];
@@ -46,11 +51,10 @@ const routes: Routes = [
     RegisterComponent,
     DashboardComponent,
     MainComponent,
-    SuninformationComponent,
     NeoTodayComponent,
-    ProfileComponent,
-    GlobalchatComponent,
     MeteoritmapComponent,
+    MainDashboardComponent,
+    WeeklyneoComponent,
   ],
   imports: [
     RouterModule.forRoot(
@@ -59,12 +63,27 @@ const routes: Routes = [
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC3Rj-pp9Eevo631CC_qDZwrC3I1hA2gpk'
     }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('token');
+        }
+      }
+    }),
     HttpClientModule,
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
-    MaterialsComponent
+    MaterialsComponent,
+    NgbModule.forRoot(),
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule
   ],
-  providers: [ UserService, MeteoriteService ],
+  providers: [ UserServices, MeteoriteService, NeoServices, AuthService, AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

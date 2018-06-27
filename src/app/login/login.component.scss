@@ -3,6 +3,7 @@
   color: white;
   font-size: 40px;
   text-align: center;
+  background: #FFF;
 }
 .jumbotron p {
   font-family: 'Saira', sans-serif;
@@ -15,6 +16,7 @@
 }
 .wrapper_form {
   margin: 0 auto;
+  margin-top: 5vh;
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   background: #006064;
@@ -27,6 +29,24 @@
   -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   text-align: center;
+}
+.alert {
+  background: #f2edda;
+  padding: 7px;
+  font-size: .9em;
+  margin-bottom: 20px;
+  display: inline-block;
+  animation: 2s alertAnim forwards;
+}
+@keyframes alertAnim {
+  from {
+      opacity:0;
+      transform: translateY(-20px);
+  }
+  to {
+      opacity:1;
+      transform: translateY(0);
+  }
 }
 input[type=button], input[type=submit], input[type=reset]  {
   background-color: #56baed;

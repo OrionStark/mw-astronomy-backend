@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import * as io from 'socket.io-client';
 declare var $: any;
 
 @Component({
@@ -10,25 +12,59 @@ declare var $: any;
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
   mode = new FormControl('over');
-  constructor() { }
+  sockIO: SocketIOClient.Socket;
+  constructor(private _router: Router) {  }
 
   ngOnInit() {
+
+    this.sockIO = io.connect('http://localhost:4322/chat');
+
     $('#live-chat header').on('click', function() {
 
       $('.chat').slideToggle(300, 'swing');
       $('.chat-message-counter').fadeToggle(300, 'swing');
     });
+
+    this.sockIO.on('new.message', (data: any) => {
+        this.pushChatMessage(data.message, data.name, data.time);
+    });
+  }
+
+  logout() {
+    localStorage.clear();
+    this._router.navigate(['login']);
   }
 
   ngAfterViewInit() {
     document.getElementById('my-input').addEventListener('keypress', (key) => {
       if ( key.keyCode === 13 ) {
-        this.pushChatMessage();
+        this.sockIO.emit('deliver.message', {
+          name: localStorage.getItem('name'),
+          message: (<HTMLInputElement>document.getElementById('my-input')).value,
+          time: new Date().toLocaleTimeString()
+        });
+        (<HTMLInputElement>document.getElementById('my-input')).value = '';
       }
     });
   }
 
-  pushChatMessage(): void {
+  openDashboard() {
+    this._router.navigate(['dashboard']);
+  }
+
+  openMeteoritLands() {
+    this._router.navigate(['dashboard/meteorit-lands']);
+  }
+
+  openTodayNeo() {
+    this._router.navigate(['dashboard/neo-today']);
+  }
+
+  openWeeklyNeo() {
+    this._router.navigate(['dashboard/neo-weekly']);
+  }
+
+  pushChatMessage(chat_msg, name, time): void {
     const imgElement = document.createElement('img');
     imgElement.src = '';
     imgElement.width = 32;
@@ -36,13 +72,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
     const chatTime = document.createElement('span');
     chatTime.classList.add('chat-time');
-    chatTime.innerHTML = new Date().getTime().toString();
+    chatTime.innerHTML = time;
 
     const nameElement = document.createElement('h5');
-    nameElement.innerHTML = 'Ristyna';
+    nameElement.innerHTML = name;
 
     const message = document.createElement('p');
-    message.innerHTML = 'Hello from the other world';
+    message.innerHTML = chat_msg;
 
     const chatBallonContent = document.createElement('div');
     chatBallonContent.classList.add('chat-message-content');
@@ -56,8 +92,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     chatBallon.classList.add('chat-message');
     chatBallon.classList.add('clearfix');
 
+    const divider = document.createElement('hr');
+
     chatBallon.appendChild(imgElement);
     chatBallon.appendChild(chatBallonContent);
+    chatBallon.appendChild(divider);
 
     document.getElementById('history').appendChild(chatBallon);
 

@@ -1,0 +1,82 @@
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+.jumbotron {
+  background: white;
+}
+.statistic-card {
+  height: auto;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.3);
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    color: #1565C0;
+}
+.hazardous-card {
+  height: auto;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.3);
+    margin: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    color: #1565C0;
+}
+.container-fluid {
+  padding: 10px;
+}
+.sun-altitude-card {
+  height: 175px;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.3);
+    border-radius: 5px;
+    background: #1565C0;
+    padding: 20px;
+    color: white;
+    margin: 10px;
+}
+.full-sun-information {
+  height: auto;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.3);
+    margin: 10px;
+    border-radius: 5px;
+    background: #5C6BC0;
+    color: white;
+    padding: 20px;
+}
+.greetings {
+  height: 125px;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.3);
+    border-radius: 5px;
+    background: #2196F3;
+    padding: 20px;
+    color: white;
+    margin: 10px;
+    text-align: center;
+}
+.sun-altitude-card .altitude-big {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 34px;
+}
