@@ -20,6 +20,11 @@ Ok, we're good now
 Next step, you need to run the API server. The API server for this project already posted on github [Astro Social API Code](https://github.com/OrionStark/mw-astronomy)  
 To run this server, all you need to do is enter to the project by terminal. And type ```javascript npm start ```
 
+# Web-app sample image
+## Dashboard
+On dashboard we could seen the sun's information and neo statistics
+
+
 # Author
 ## Robby Muhammad Nst
 This code is for my lecturer as my assignment. Thankyou
