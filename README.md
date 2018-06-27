@@ -1,6 +1,9 @@
 # Astro Social
 This is my college project on front-end side. Built in Angular 6 with Socket IO library  
 
+# WARNING
+For the meteorites map feature. It's really hard to load because there are 1000+ zone in the world. And it's too hard to tell google everytime to put a pin on the map. So, I recomend you to use google chrome or chromium. And wait patiently for it, if it's not appear for a long time. Just refresh it. Sorry
+
 # How to run it
 1. For dev mode ``` ng serve ```  
 2. For build ``` ng build ```  
@@ -22,8 +25,13 @@ To run this server, all you need to do is enter to the project by terminal. And 
 
 # Web-app sample image
 ## Dashboard
-On dashboard we could seen the sun's information and neo statistics
-
+1. On dashboard we could seen the sun's information and neo statistics
+![dashboard](https://raw.githubusercontent.com/OrionStark/mw-astronomy-frontend/master/images/Screenshot%20from%202018-06-27%2014-12-42.png)  
+2. And there's a meteorites land map too. But it so hard to load because there are 1000+ zone in the world  
+![meteorite](https://raw.githubusercontent.com/OrionStark/mw-astronomy-frontend/master/images/Screenshot%20from%202018-06-27%2014-12-03.png)  
+3. There's a page about NEO, daily and weekly
+![neo](https://raw.githubusercontent.com/OrionStark/mw-astronomy-frontend/master/images/Screenshot%20from%202018-06-27%2014-12-53.png)  
+4. An you can chatting to the world too.
 
 # Author
 ## Robby Muhammad Nst
